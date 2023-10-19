@@ -314,7 +314,6 @@
       const form = document.querySelector('#contact-form');
 
       form.addEventListener('submit', event =>{
-        event.preventDefault();
         const { name, email, subject, message } = event.target;
 
         const endpoint = "https://6uhy2sg9j8.execute-api.us-east-2.amazonaws.com/default/SendEmail";
