@@ -32,3 +32,29 @@
 		});
 
 })(jQuery);
+
+//End Miniport Code
+
+const form = document.querySelector('#contact-form');
+
+      form.addEventListener('submit', event =>{
+        const { name, email, subject, message } = event.target;
+
+        const endpoint = "https://6uhy2sg9j8.execute-api.us-east-2.amazonaws.com/default/SendEmail";
+        const body = JSON.stringify({
+          senderName: name.value,
+          senderEmail: email.value,
+          subject: subject.value,
+          message: message.value
+        });
+        const requestOptions = {
+          method: "POST",
+          body
+        };
+
+        fetch(endpoint, requestOptions)
+          .then((response) => {
+            if (!response.ok) throw new Error("Error in fetch");
+            return response.json();
+          });
+      });
