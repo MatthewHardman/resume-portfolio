@@ -200,7 +200,6 @@
           <h2>Invite me to be part of your team!</h2>
           <p>Check out my resume below to see what I have to offer and get in touch.</p>
         </header>
-        <div class="row">
           <div class="col-12">
             <iframe src="./images/Matthew Hardman Software Resume.pdf" width="80%" height="700"></iframe>
           </div>
@@ -213,9 +212,10 @@
                 </div>
               </div>
             </form>
+         -->
         <div class="row">
           <div class="col-12">
-            <form method="post" action="#">
+            <form id="contact-form">
               <div class="row">
                 <div class="col-6 col-12-small">
                   <input type="text" name="name" id="name" placeholder="Name" />
@@ -254,7 +254,7 @@
               </div>
             </form>
           </div>
-        -->
+       
           <div class="col-12">
             <hr />
             <h3>Find me on ...</h3>
@@ -307,5 +307,31 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+      const form = document.quertySelector('#contact-form');
+
+      form.addEventListener('submit', event =>{
+        event.preventDefault();
+        const { name, email, subject, message } = event.target;
+
+        const endpoint = "<https://6uhy2sg9j8.execute-api.us-east-2.amazonaws.com/default/SendEmail>";
+        const body = JSON.stringify({
+          senderName: name.value,
+          senderEmail: email.value,
+          subject: subject.value,
+          message: message.value
+        });
+        const requestOptions = {
+          method: "POST",
+          body
+        };
+
+        fetch(endpoint, requestOptions)
+          .then((response) => {
+            if (!response.ok) throw new Error("Error in fetch");
+            return response.json();
+          });
+      });
+    </script>
   </body>
 </html>
