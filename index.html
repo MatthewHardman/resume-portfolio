@@ -317,7 +317,7 @@
         event.preventDefault();
         const { name, email, subject, message } = event.target;
 
-        const endpoint = "<https://6uhy2sg9j8.execute-api.us-east-2.amazonaws.com/default/SendEmail>";
+        const endpoint = "https://6uhy2sg9j8.execute-api.us-east-2.amazonaws.com/default/SendEmail";
         const body = JSON.stringify({
           senderName: name.value,
           senderEmail: email.value,
